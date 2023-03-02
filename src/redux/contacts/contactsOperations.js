@@ -6,7 +6,7 @@ import {
 } from 'components/utils/contactsApi';
 
 export const fetchAllContacts = createAsyncThunk(
-  'contacts/fetch-all',
+  'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
       const data = await getContacts();
@@ -18,7 +18,7 @@ export const fetchAllContacts = createAsyncThunk(
 );
 
 export const fetchAddContacts = createAsyncThunk(
-  'contacts/add',
+  'contacts/addContact',
   async (data, { rejectWithValue }) => {
     try {
       const result = await addContacts(data);
@@ -30,7 +30,7 @@ export const fetchAddContacts = createAsyncThunk(
 );
 
 export const fetchDeleteContacts = createAsyncThunk(
-  'contacts/delete',
+  'contacts/deleteContact',
   async (id, { rejectWithValue }) => {
     try {
       await deleteContacts(id);
