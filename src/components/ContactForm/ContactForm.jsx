@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import Button from 'components/Button';
 import s from './ContactForm.module.css';
 
@@ -8,7 +8,7 @@ import {
   formatUserTel,
 } from 'components/utils/addContactsUtils';
 import { getAllContacts } from 'redux/contacts/contactsSelectors';
-import { addContacts } from 'redux/contacts/contactsSlice';
+import { fetchAddContacts } from 'redux/contacts/contactsOperations';
 
 const ContactForm = () => {
   const contacts = useSelector(getAllContacts);
@@ -17,11 +17,11 @@ const ContactForm = () => {
   const onFormSabmit = e => {
     e.preventDefault();
     const name = e.currentTarget.name.value.toLowerCase();
-    const number = formatUserTel(e.currentTarget.number.value);
+    const phone = formatUserTel(e.currentTarget.number.value);
 
     if (checkNameInPhonebook(name, contacts)) return;
 
-    dispatch(addContacts({ name, number, id: nanoid(5) }));
+    dispatch(fetchAddContacts({ name, phone }));
 
     e.currentTarget.reset();
   };
